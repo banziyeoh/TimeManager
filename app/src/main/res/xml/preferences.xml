@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="App Theme">
+    <CheckBoxPreference
+            android:key="enable_dark"
+            android:title="Dark Theme"
+            android:summary="Unleash The Black Side Of The App"/>
+
+        <CheckBoxPreference
+            android:key="enable_rainbow"
+            android:title="Rainbow Theme"
+            android:summary="Nyan Nyan Nyan"/>
+    </PreferenceCategory>
+       <PreferenceCategory
+           android:title="User Information">
+        <EditTextPreference
+            android:key="username"
+            android:summary="Please enter your desired username"
+            android:title="Username" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

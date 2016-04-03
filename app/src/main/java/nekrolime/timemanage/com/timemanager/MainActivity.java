@@ -64,9 +64,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tabs.addTab(tabs.newTab().setText("Task"));
         tabs.addTab(tabs.newTab().setText("Scheduler"));
         viewpager = (ViewPager) findViewById(R.id.pager);
+        bindViewPagerWIthTabLayout();
+
 
         res = sqlHelper.getAllData();
         adapter = new PagerAdapter(getSupportFragmentManager(),res);
+
 
         viewpager.setAdapter(adapter);
     }
@@ -172,7 +175,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
         }
+
+    private void bindViewPagerWIthTabLayout(){
+        tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewpager.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+            @Override
+            public void onPageSelected(int position) {
+                tabs.getTabAt(position).select();
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
     }
+
+
+}
 
 
 

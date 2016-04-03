@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (isInserted =true) {
                         res = sqlHelper.getAllData();
                         Toast.makeText(MainActivity.this, "Task Created Sucessfully :D"+res.getCount(), Toast.LENGTH_LONG).show();
-                        adapter.notifyNewDataChanged();
+                        adapter.notifyNewDataChanged(res);
                         //RUN THE CODE
                     }else
                         Toast.makeText(MainActivity.this,"Task Created Unsucessfully :(",Toast.LENGTH_LONG).show();

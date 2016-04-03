@@ -42,11 +42,9 @@ public class FragmentPage extends Fragment {
         return view;
     }
 
-    public void notifyNewData(){
-        if(adapter!=null) {
-            adapter = new ViewAdapter(cursor);
-            recyclerView.setAdapter(adapter);
-        }
+    public void notifyNewData(Cursor res){
+        adapter = new ViewAdapter(res);
+        recyclerView.setAdapter(adapter);
+    }
     }
 
-}

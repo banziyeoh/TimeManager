@@ -7,7 +7,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     private Cursor cursor;
-    private FragmentPage fragment;
+    private FragmentPage fragment1;
+    private SchedulerFragment fragment2;
 
     public PagerAdapter(FragmentManager fm,Cursor cursor) {
         super(fm);
@@ -16,8 +17,12 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        fragment = FragmentPage.newInstance(position,cursor);
-        return fragment;
+        if(position == 0) {
+            fragment1 = FragmentPage.newInstance(position, cursor);
+            return fragment1;
+        }else{
+            return new SchedulerFragment();
+        }
     }
 
     @Override
@@ -25,11 +30,12 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         return 2;
     }
 
-    public void notifyNewDataChanged(){;
-        if(fragment!=null){
-            fragment.notifyNewData();
+    public void notifyNewDataChanged(Cursor res){;
+        if(fragment1!=null){
+            fragment1.notifyNewData(res);
             this.notifyDataSetChanged();
         }
+
 
     }
 }

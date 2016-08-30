@@ -32,8 +32,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
     public void notifyNewDataChanged(Cursor res){;
         if(fragment1!=null){
-            fragment1.notifyNewData(res);
-            this.notifyDataSetChanged();
+
         }
 
 

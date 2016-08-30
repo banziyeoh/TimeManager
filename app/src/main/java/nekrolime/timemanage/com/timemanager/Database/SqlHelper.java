@@ -42,6 +42,22 @@ public class SqlHelper extends SQLiteOpenHelper{
     public Cursor getAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME,null);
+        res.close();
         return res;
     }
+    public Cursor gettaskdata(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String [] columns  = {TASK};
+        Cursor c = db.query(TABLE_NAME,columns,null,null,null,null,null);
+        return c;
+    }
+    public Cursor  gettask(String[] args){
+        SQLiteDatabase d = this.getReadableDatabase();
+        String query = "SELECT " + TASK + " FROM " + TABLE_NAME + " WHERE " + TASK + " =?";
+        Cursor c = d.rawQuery(query, args);
+        return c;
+
+    }
+
+
 }

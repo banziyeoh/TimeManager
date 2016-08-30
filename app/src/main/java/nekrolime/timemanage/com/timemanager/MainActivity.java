@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ViewPager viewpager;
     private PagerAdapter adapter;
     private Cursor res;
+    String task;
 
 
     CharSequence Titles[]={"Task","Schedule"};
@@ -67,12 +68,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bindViewPagerWIthTabLayout();
 
 
+
         res = sqlHelper.getAllData();
         adapter = new PagerAdapter(getSupportFragmentManager(),res);
 
 
         viewpager.setAdapter(adapter);
     }
+
+
+
+
 
 
     private void setupFAB() {
@@ -152,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     boolean isInserted = sqlHelper.insertData(inputField.getText().toString());
                     if (isInserted =true) {
                         res = sqlHelper.getAllData();
-                        Toast.makeText(MainActivity.this, "Task Created Sucessfully :D"+res.getCount(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Task Created Sucessfully :D", Toast.LENGTH_LONG).show();
                         adapter.notifyNewDataChanged(res);
                         //RUN THE CODE
                     }else

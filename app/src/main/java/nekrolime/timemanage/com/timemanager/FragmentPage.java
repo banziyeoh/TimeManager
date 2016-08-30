@@ -12,17 +12,22 @@ import android.view.ViewGroup;
 
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import nekrolime.timemanage.com.timemanager.Database.SqlHelper;
+
 public class FragmentPage extends Fragment {
     private int value;
     private RecyclerView recyclerView;
-    private Cursor cursor;
     private  ViewAdapter adapter;
+    SqlHelper sqlHelper;
+    String task;
 
     public static FragmentPage newInstance(int value ,Cursor cursor){
 
         FragmentPage frag = new FragmentPage();
         frag.value = value;
-        frag.cursor= cursor;
         return frag;
     }
 
@@ -35,16 +40,38 @@ public class FragmentPage extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
-        adapter = new ViewAdapter(cursor);
+        adapter = new ViewAdapter(getData());
         recyclerView.setAdapter(adapter);
 
 
-        return view;
+
+
+        return view;}
+    public List<NatureItem> getData() {
+        List<NatureItem> data = new ArrayList<>();
+        NatureItem mainInfo = null;
+        Cursor c = sqlHelper.gettaskdata();
+        if (c != null) {
+            while (c.moveToNext()) {
+                int nameIndex = c.getColumnIndex(sqlHelper.TASK);
+                String nameText = c.getString(nameIndex);
+                this.task = nameText;
+
+                mainInfo = new NatureItem();
+                mainInfo.setName(nameText);
+
+                mainInfo.setThumbnail(R.mipmap.ic_launcher);
+                data.add(mainInfo);
+
+            }
+        }
+
+        return data;
     }
 
-    public void notifyNewData(Cursor res){
-        adapter = new ViewAdapter(res);
-        recyclerView.setAdapter(adapter);
-    }
-    }
+
+}
+
+
+
 

@@ -1,8 +1,6 @@
 package nekrolime.timemanage.com.timemanager;
 
-/**
- * Created by Yeoh on 23/10/2015.
- */
+
 public class NatureItem {
     private String mName;
     private String mDes;

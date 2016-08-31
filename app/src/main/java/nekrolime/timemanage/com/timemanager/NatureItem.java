@@ -3,7 +3,6 @@ package nekrolime.timemanage.com.timemanager;
 
 public class NatureItem {
     private String mName;
-    private String mDes;
     private int mThumbnail;
 
     public String getName() {
@@ -12,14 +11,6 @@ public class NatureItem {
 
     public void setName(String name) {
         this.mName = name;
-    }
-
-    public String getDes() {
-        return mDes;
-    }
-
-    public void setDes(String des) {
-        this.mDes = des;
     }
 
     public int getThumbnail() {

@@ -44,6 +44,7 @@ public class FragmentPage extends Fragment {
         recyclerView.setLayoutManager(llm);
         adapter = new ViewAdapter(getData());
         recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
 
 
@@ -63,7 +64,7 @@ public class FragmentPage extends Fragment {
                 mainInfo = new NatureItem();
                 mainInfo.setName(nameText);
 
-                mainInfo.setThumbnail(R.mipmap.ic_launcher);
+                mainInfo.setThumbnail(R.drawable.ic_check);
                 data.add(mainInfo);
 
             }

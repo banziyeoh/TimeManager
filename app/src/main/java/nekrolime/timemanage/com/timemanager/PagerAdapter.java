@@ -1,25 +1,24 @@
 package nekrolime.timemanage.com.timemanager;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-
-import nekrolime.timemanage.com.timemanager.Database.SqlHelper;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     private Context context;
     private FragmentPage fragment1;
     private SchedulerFragment fragment2;
 
-    public PagerAdapter(FragmentManager fm) {
+
+    public PagerAdapter(FragmentManager fm,Context context) {
         super(fm);
+        this.context = context;
 
     }
 
 
-    public Fragment getItem(int position, SqlHelper sqlHelper) {
+    public Fragment getItem(int position) {
         if(position == 0) {
             fragment1 = FragmentPage.newInstance(position,context);
             return fragment1;
@@ -33,11 +32,12 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         return 2;
     }
 
-    public void notifyNewDataChanged(Cursor res){;
-        if(fragment1!=null){
 
-        }
-
-
+    @Override
+    public int getItemPosition(Object object) {
+        // Causes adapter to reload all Fragments when
+        // notifyDataSetChanged is called
+        return POSITION_NONE;
     }
+
 }

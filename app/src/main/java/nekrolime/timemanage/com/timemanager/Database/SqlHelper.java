@@ -51,6 +51,13 @@ public class SqlHelper extends SQLiteOpenHelper{
         Cursor c = db.query(TABLE_NAME,columns,null,null,null,null,null);
         return c;
     }
+
+    //public boolean removeData(String task){
+       // SQLiteDatabase d = this.getReadableDatabase();
+
+       // return d.delete(TABLE_NAME,)
+
+    //}
     public Cursor  gettask(String[] args){
         SQLiteDatabase d = this.getReadableDatabase();
         String query = "SELECT " + TASK + " FROM " + TABLE_NAME + " WHERE " + TASK + " =?";

@@ -1,24 +1,27 @@
 package nekrolime.timemanage.com.timemanager;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import nekrolime.timemanage.com.timemanager.Database.SqlHelper;
+
 public class PagerAdapter extends FragmentStatePagerAdapter {
-    private Cursor cursor;
+    private Context context;
     private FragmentPage fragment1;
     private SchedulerFragment fragment2;
 
-    public PagerAdapter(FragmentManager fm,Cursor cursor) {
+    public PagerAdapter(FragmentManager fm) {
         super(fm);
-        this.cursor = cursor;
+
     }
 
-    @Override
-    public Fragment getItem(int position) {
+
+    public Fragment getItem(int position, SqlHelper sqlHelper) {
         if(position == 0) {
-            fragment1 = FragmentPage.newInstance(position, cursor);
+            fragment1 = FragmentPage.newInstance(position,context);
             return fragment1;
         }else{
             return new SchedulerFragment();

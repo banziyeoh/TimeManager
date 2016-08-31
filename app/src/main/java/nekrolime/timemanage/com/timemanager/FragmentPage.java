@@ -1,5 +1,6 @@
 package nekrolime.timemanage.com.timemanager;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,13 +22,14 @@ public class FragmentPage extends Fragment {
     private int value;
     private RecyclerView recyclerView;
     private  ViewAdapter adapter;
-    SqlHelper sqlHelper;
+    public  SqlHelper sqlHelper;
     String task;
 
-    public static FragmentPage newInstance(int value ,Cursor cursor){
+    public static FragmentPage newInstance(int value , Context context){
 
         FragmentPage frag = new FragmentPage();
         frag.value = value;
+        frag.sqlHelper= new SqlHelper(context);
         return frag;
     }
 
@@ -42,6 +44,7 @@ public class FragmentPage extends Fragment {
         recyclerView.setLayoutManager(llm);
         adapter = new ViewAdapter(getData());
         recyclerView.setAdapter(adapter);
+
 
 
 

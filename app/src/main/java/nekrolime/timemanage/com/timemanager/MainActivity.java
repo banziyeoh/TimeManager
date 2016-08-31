@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         res = sqlHelper.getAllData();
-        adapter = new PagerAdapter(getSupportFragmentManager(),res);
+        adapter = new PagerAdapter(getSupportFragmentManager());
 
 
         viewpager.setAdapter(adapter);

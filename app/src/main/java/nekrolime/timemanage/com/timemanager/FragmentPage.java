@@ -42,9 +42,9 @@ public class FragmentPage extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
-        adapter = new ViewAdapter(getData());
+        adapter = new ViewAdapter(getData(),getContext(),getFragmentManager());
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+
 
 
 

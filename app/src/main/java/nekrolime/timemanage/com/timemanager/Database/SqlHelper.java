@@ -52,19 +52,14 @@ public class SqlHelper extends SQLiteOpenHelper{
         return c;
     }
 
-    //public boolean removeData(String task){
-       // SQLiteDatabase d = this.getReadableDatabase();
-
-       // return d.delete(TABLE_NAME,)
-
-    //}
-    public Cursor  gettask(String[] args){
-        SQLiteDatabase d = this.getReadableDatabase();
-        String query = "SELECT " + TASK + " FROM " + TABLE_NAME + " WHERE " + TASK + " =?";
-        Cursor c = d.rawQuery(query, args);
+    public Cursor getID(){
+        SQLiteDatabase sq = this.getReadableDatabase();
+        String [] id = {ID};
+        Cursor c = sq.query(TABLE_NAME,id,null,null,null,null,null);
         return c;
-
     }
+
+
 
 
 }

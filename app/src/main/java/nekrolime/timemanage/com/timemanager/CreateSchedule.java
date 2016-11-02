@@ -95,8 +95,8 @@ public class CreateSchedule extends AppCompatActivity implements Switch.OnChecke
     public void addItemsToSpinner() {
 
         ArrayList<String> list = new ArrayList<String>();
-        list.add("Create Daily Schedule");
-        list.add("Create Weekly Schedule");
+        list.add(" Daily Schedule");
+        list.add(" Weekly Schedule");
 
         // Custom ArrayAdapter with spinner item layout to set popup background
 

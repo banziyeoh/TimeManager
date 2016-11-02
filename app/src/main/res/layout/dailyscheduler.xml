@@ -53,18 +53,6 @@
     android:orientation="horizontal"
     android:gravity="right|bottom"
     android:layout_weight="1">
-    <Button
-        android:id="@+id/buttonCancel"
-        android:layout_width="74dp"
-        android:layout_height="36dp"
-        android:text="cancel"
-        android:textColor="#D50000"
-        android:padding="8dp"
-        android:layout_marginTop="24dp"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_weight="0"
-
-        />
 
     <Button
         android:layout_width="54dp"

@@ -29,6 +29,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.CustomViewHold
 
 
 
+
     public ViewAdapter(List<NatureItem> mainInfo, Context ctx, FragmentManager fm) {
         this.mainInfo = mainInfo;
         this.ctx = ctx;
@@ -54,6 +55,24 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.CustomViewHold
     public void onBindViewHolder(final CustomViewHolder holder, final int position) {
         holder.task.setText(mainInfo.get(position).getName());
         holder.button.setImageResource(mainInfo.get(position).getThumbnail());
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("H");
+                View parent = (View) view.getParent();
+                TextView task = (TextView) parent.findViewById(R.id.text);
+                String taskt= String.valueOf(task.getText());
+                SqlHelper sq = new SqlHelper(ctx);
+                SQLiteDatabase sbl = sq.getReadableDatabase();
+                sbl.delete(SqlHelper.TABLE_NAME,
+                        SqlHelper.TASK + " = ?",
+                        new String[]{taskt});
+                sbl.close();
+                mainInfo.remove(position);
+                notifyItemRemoved(position);
+            }
+        });
+
 
 
     }
@@ -70,17 +89,11 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.CustomViewHold
               button.setOnClickListener(new View.OnClickListener() {
                   @Override
                   public void onClick(View view) {
-                      View parent = (View) view.getParent();
-                      TextView task = (TextView) parent.findViewById(R.id.text);
-                      String taskt= String.valueOf(task.getText());
-                      SqlHelper sq = new SqlHelper(ctx);
-                      SQLiteDatabase sbl = sq.getReadableDatabase();
-                      sbl.delete(SqlHelper.TABLE_NAME,
-                              SqlHelper.TASK + " = ?",
-                              new String[]{taskt});
-                      sbl.close();
-                      PagerAdapter pg = new PagerAdapter(fm,ctx);
-                      pg.notifyDataSetChanged();
+
+
+
+
+
 
 
 

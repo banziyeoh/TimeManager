@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ViewPager viewpager;
     private PagerAdapter adapter;
     private Cursor res;
+    private static final int RESULT_SETTINGS = 1;
     String task;
 
 
@@ -130,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return false;
                 }
             });
+
             return super.onCreateOptionsMenu(menu);
 
     }
@@ -162,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(MainActivity.this, "Task Created Sucessfully :D", Toast.LENGTH_LONG).show();
                         adapter.notifyDataSetChanged();
 
-                        //RUN THE CODE
+
                     }else
                         Toast.makeText(MainActivity.this,"Task Created Unsucessfully :(",Toast.LENGTH_LONG).show();
 
@@ -210,6 +212,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                Intent i = new Intent(this,PreferenceFragment.class);
+                startActivityForResult(i,RESULT_SETTINGS);
+                break;
+        }
+        return  true;
+    }
+
 
 
 

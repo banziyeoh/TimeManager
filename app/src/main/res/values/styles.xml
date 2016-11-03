@@ -21,12 +21,21 @@
         <item name="android:textColorPrimary">#FFFFFF</item>
         <item name="android:textColorSecondary">#FFFFFF</item>
     </style>
-
-    <style name="AppTheme.Dark" parent="Theme.AppCompat">
-        <item name="colorPrimary">@color/colorPrimaryInverse</item>
+    <!-- dark theme-->
+    <style name="AppTheme.Dark" parent="ThemeOverlay.AppCompat.Dark">
+        <item name= "colorPrimary">@color/colorPrimaryInverse</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkInverse</item>
-        <item name="colorAccent">@color/colorAccentInverse</item>
+        <item name = "colorAccent">@color/colorAccentInverse</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryDarkInverse</item>
+
+
+
+
     </style>
+
+
+
+
 
 
 </resources>

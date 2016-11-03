@@ -3,8 +3,11 @@ package nekrolime.timemanage.com.timemanager;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -58,17 +61,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp((DrawerLayout)findViewById(R.id.drawer_layout), toolbar);
         sqlHelper = new SqlHelper(this);
-
-
-
-
         tabs = (TabLayout) findViewById(R.id.tabs);
+
+        //change theme
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        String themeName = pref.getString("theme","Dark");
+        if (themeName.equals("Dark")){
+            setTheme(R.style.AppTheme_Dark);
+            tabs.setBackgroundColor(getResources().getColor(R.color.colorPrimaryInverse));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryInverse));
+            toolbar.setPopupTheme(R.style.AppTheme_Dark);
+            if (Build.VERSION.SDK_INT >= 21) {
+                getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimaryInverse));
+                getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryInverse));
+            }
+
+
+
+
+
+
+
+        }
+
+
+
         tabs.addTab(tabs.newTab().setText("Task"));
         tabs.addTab(tabs.newTab().setText("Scheduler"));
         viewpager = (ViewPager) findViewById(R.id.pager);
         bindViewPagerWIthTabLayout();
-
-
 
         res = sqlHelper.getAllData();
         adapter = new PagerAdapter(getSupportFragmentManager(),this);
@@ -221,6 +242,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
         return  true;
+    }
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data){
+        if(requestCode== RESULT_SETTINGS){
+            if(resultCode == PreferenceFragment.RESULT_CODE_THEME_UPDATED){
+                finish();
+                startActivity(getIntent());
+                return;
+            }
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+
     }
 
 

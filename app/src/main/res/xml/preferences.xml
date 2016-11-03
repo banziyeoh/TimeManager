@@ -4,15 +4,15 @@
 
     <PreferenceCategory
         android:title="App Theme">
-    <CheckBoxPreference
-            android:key="enable_dark"
-            android:title="Dark Theme"
-            android:summary="Unleash The Black Side Of The App"/>
+        <ListPreference
+            android:defaultValue="Default"
+            android:entries="@array/themes"
+            android:entryValues="@array/themes"
+            android:key="theme"
+            android:title="App appearance"
+            android:summary="Choose your style"
+            android:dialogTitle="Theme"/>
 
-        <CheckBoxPreference
-            android:key="enable_rainbow"
-            android:title="Rainbow Theme"
-            android:summary="Nyan Nyan Nyan"/>
     </PreferenceCategory>
        <PreferenceCategory
            android:title="User Information">
